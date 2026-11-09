@@ -28,7 +28,7 @@ export const company = {
   hours: 'Monday – Friday, 09:00 – 18:00 CET',
   languages: ['English', 'Italian'],
   founder: {
-    name: 'Umberto I.',
+    name: 'Umberto Iorillo',
     role: 'Founder & Managing Director',
     linkedin: 'https://mt.linkedin.com/in/umberto-i-140ba41b8',
   },

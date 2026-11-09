@@ -29,17 +29,15 @@ Also generated: `sitemap-index.xml`, `robots.txt`, `og.png`, favicon, web manife
 
 All legal and contact details live in **`src/data/company.ts`** and propagate to the footer, legal pages, structured data and contact page. Navigation lives in `src/data/nav.ts`, service content in `src/data/services.ts`.
 
-### ⚠️ Facts to confirm before going live
+### Facts to keep aligned with the registry
 
-These values were taken from the previous website and from the Malta Business Registry via OpenCorporates. Payment providers reject applications when the website and the registry disagree, so verify each one:
+Payment providers reject applications when the website and the registry disagree. The site currently states:
 
-1. **Founder full name** — currently `Umberto I.` in `company.founder.name`. Replace with the full legal name as it appears on the MBR director record and on the Airwallex application.
-2. **Registered office** — the site shows *Level G, Office 1/0884, Quantum House, 75 Abate Rigord Street, Ta' Xbiex XBX 1120*. The public registry extract still lists *31, Pjazza L-Erojj, Swatar, Birkirkara BKR 4251*. If the MBR has not been updated, either file the change of registered office or show the registry address on the site. **They must match.**
-3. **VAT number** — set `company.vatNumber` (format `MT12345678`) if the company is VAT-registered; the footer and legal pages show it automatically.
-4. **Email domain** — the site uses `info@usn-omni.com` while the domain is `usn-omni.eu`. Consider adding `info@usn-omni.eu` as an alias and using the `.eu` address on the Airwallex application, so the application email matches the website domain.
-5. **Founder photo** — drop a real portrait at `public/founder.jpg` (ideally 640×800 or larger, 4:5). Until then an initials placeholder is shown. Reviewers distrust stock photos; use a real picture.
-6. **Pricing** — the ranges on `/pricing` and in `src/data/services.ts` are realistic defaults for this kind of agency. Adjust them to your real price list; keep prices visible and in EUR.
-7. **LinkedIn company page** — `company.social.linkedin` points to `linkedin.com/company/usn-omni`; create it or change the URL.
+- Legal name **USN Ltd.**, company number **C 104012**, Malta Business Registry.
+- Registered office **Level G, Office 1/0884, Quantum House, 75 Abate Rigord Street, Ta' Xbiex XBX 1120, Malta** (the updated address; make sure the MBR record and the Airwallex application use the same one).
+- Managing director and founder **Umberto Iorillo** (photo in `public/founder.jpg`).
+- Contact **info@usn-omni.com**, **+356 9916 4218**, Mon–Fri 09:00–18:00 CET.
+- No VAT number shown (`company.vatNumber` is empty); set it in `src/data/company.ts` if the company becomes VAT-registered and it will appear in the footer and legal pages automatically.
 
 ## Airwallex / payment-provider checklist (what this site covers)
 
