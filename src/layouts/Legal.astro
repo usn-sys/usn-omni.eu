@@ -1,0 +1,26 @@
+---
+import Base from './Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { legalNav } from '../data/nav';
+interface Props { title: string; description: string; updated: string; }
+const { title, description, updated } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, '');
+---
+<Base title={title} description={description}>
+  <PageHero eyebrow="Legal" title={title} dark={false} crumbs={[{ label: 'Legal' }, { label: title }]}>
+    <p class="mt-6 text-sm text-ink-500">Last updated: {updated}</p>
+  </PageHero>
+  <section class="pb-24">
+    <div class="container-x grid gap-12 lg:grid-cols-12">
+      <aside class="lg:col-span-3">
+        <nav class="lg:sticky lg:top-24" aria-label="Legal documents">
+          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-ink-500">Legal documents</p>
+          <ul class="mt-4 space-y-1">
+            {legalNav.map((l) => <li><a href={l.href} class:list={['block rounded-lg px-3 py-2 text-sm transition-colors hover:bg-ink-900/5', path === l.href ? 'bg-ink-900 text-white hover:bg-ink-900' : 'text-ink-600']}>{l.label}</a></li>)}
+          </ul>
+        </nav>
+      </aside>
+      <article class="prose-legal lg:col-span-8 lg:col-start-5"><slot /></article>
+    </div>
+  </section>
+</Base>

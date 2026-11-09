@@ -1,0 +1,26 @@
+---
+import Legal from '../../layouts/Legal.astro';
+import { company } from '../../data/company';
+---
+<Legal title="Cookie Policy" description="Which cookies the USN website uses — none for profiling or advertising." updated="9 November 2025">
+  <h2>1. Summary</h2>
+  <p>The website usn-omni.eu, operated by <strong>{company.legalName}</strong>, is designed to work <strong>without profiling, advertising or analytics cookies</strong>. Because we set no cookies that require consent under Directive 2002/58/EC (ePrivacy) and the Maltese Processing of Personal Data (Electronic Communications Sector) Regulations, we do not show a cookie banner.</p>
+
+  <h2>2. Cookies and similar technologies in use</h2>
+  <table>
+    <thead><tr><th>Name</th><th>Type</th><th>Purpose</th><th>Duration</th></tr></thead>
+    <tbody>
+      <tr><td>—</td><td>First-party cookies</td><td>None are set by this website.</td><td>—</td></tr>
+      <tr><td>Browser storage</td><td>Local storage</td><td>None is used.</td><td>—</td></tr>
+    </tbody>
+  </table>
+
+  <h2>3. Third-party content</h2>
+  <p>The “About” and “Contact” pages embed a map from <strong>OpenStreetMap</strong> (OpenStreetMap Foundation, UK). The map is loaded only when you scroll to it; when it loads, your browser sends your IP address to OpenStreetMap’s servers, which may set technical cookies governed by the <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy" rel="noopener" target="_blank">OSMF privacy policy</a>. Fonts are self-hosted; no requests are made to Google Fonts or other font providers.</p>
+
+  <h2>4. Server logs</h2>
+  <p>Our hosting provider keeps standard server logs (IP address, time, requested page, user agent) for security purposes for up to 30 days. This does not involve cookies. See our <a href="/legal/privacy">Privacy Policy</a>.</p>
+
+  <h2>5. Changes</h2>
+  <p>If we ever introduce cookies that require consent (for example analytics), we will update this page and add a consent mechanism with equal “accept” and “reject” options before any such cookie is set.</p>
+</Legal>

@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import { existsSync } from 'node:fs';
+import { company } from '../data/company';
+const hasPhoto = existsSync('public/founder.jpg');
+const f = company.founder;
+const schema = [{ '@context': 'https://schema.org', '@type': 'Person', name: f.name, jobTitle: f.role, worksFor: { '@id': `${company.website}/#organization` }, sameAs: [f.linkedin], address: { '@type': 'PostalAddress', addressLocality: 'Malta', addressCountry: 'MT' } }];
+const principles = [
+  ['What is good for you is good for the world', 'A business that treats its customers, its people and its environment well is not being generous — it is being well run. This conviction became USN’s motto.'],
+  ['Operate first, advise second', 'Advice is cheap when you do not have to live with the consequences. USN runs operations day to day; recommendations come from doing the work.'],
+  ['Outsourcing as a bridge', 'The best outcome of an engagement is a client who could do it alone — and chooses to stay because the work is good, not because they are stuck.'],
+  ['Build for the next decade of commerce', 'Discovery is moving from search bars to assistants that shop on people’s behalf. Brands need clean data, reliable operations and honest pricing to be chosen in that world.'],
+];
+---
+<Base title={`${f.name} — Founder & Managing Director of USN`} description={`Meet ${f.name}, founder and managing director of USN Ltd. (Malta): an entrepreneur and operator with more than a decade of experience building and running digital-commerce businesses in Europe.`} schema={schema}>
+  <PageHero eyebrow="The founder" title={f.name} lead={`${f.role} of USN Ltd. Entrepreneur, operator and venture builder, based in Malta.`} crumbs={[{ label: 'Founder' }]}>
+    <div class="mt-8 flex flex-wrap items-center gap-4 text-sm">
+      <a href={f.linkedin} target="_blank" rel="noopener" class="btn-ghost-light !py-2.5"><Icon name="linkedin" class="h-4 w-4" /> LinkedIn profile</a>
+      <a href="/contact" class="btn-accent !py-2.5">Book a call with {f.name.split(' ')[0]} <Icon name="arrow" class="h-4 w-4" /></a>
+    </div>
+  </PageHero>
+
+  <section class="section">
+    <div class="container-x grid gap-14 lg:grid-cols-12">
+      <div class="lg:col-span-5" data-reveal>
+        <div class="relative mx-auto aspect-[4/5] max-w-md overflow-hidden rounded-3xl border border-ink-900/8 bg-gradient-to-br from-ink-800 to-ink-950 shadow-lift">
+          <div class="absolute inset-0 glow"></div>
+          {hasPhoto ? <img src="/founder.jpg" alt={`Portrait of ${f.name}`} class="relative h-full w-full object-cover" width="640" height="800" /> : <div class="relative flex h-full w-full items-center justify-center"><span class="font-display text-[8rem] font-bold text-white/15">{f.name.split(' ').map(w => w[0]).join('')}</span></div>}
+          <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink-950 via-ink-950/60 to-transparent p-7 text-white">
+            <div class="font-display text-xl font-semibold">{f.name}</div>
+            <div class="text-sm text-mist-400">{f.role}</div>
+          </div>
+        </div>
+        <dl class="mt-8 grid grid-cols-2 gap-4 text-sm">
+          {[['Based in', 'Malta (EU)'], ['Languages', 'Italian, English'], ['Focus', 'Digital commerce operations'], ['Role at USN', 'Founder, director and sole shareholder']].map(([k, v]) => <div class="rounded-xl border border-ink-900/8 bg-white p-4"><dt class="text-ink-500">{k}</dt><dd class="mt-1 font-semibold text-ink-900">{v}</dd></div>)}
+        </dl>
+      </div>
+
+      <div class="lg:col-span-7" data-reveal="2">
+        <p class="eyebrow">Biography</p>
+        <h2 class="h-section mt-5">An operator who has spent his career inside digital commerce.</h2>
+        <div class="mt-6 space-y-5 text-lg leading-relaxed text-ink-700">
+          <p>{f.name} is an Italian entrepreneur who has worked in digital commerce for more than a decade — first building and running online retail businesses, then scaling the teams, technology and processes behind them across several European markets.</p>
+          <p>Having experienced first-hand how hard it is for a growing brand to find one partner that can run operations, build technology and drive growth coherently, he founded USN Ltd. in Malta to be exactly that partner. He leads the company as its managing director and remains personally involved in the scoping and review of every client engagement.</p>
+          <p>He describes himself as a venture builder: someone who enjoys turning an idea into a working organisation, with real customers, real revenue and real accountability. He writes regularly about the future of e-commerce in the age of AI assistants — a shift he believes will reward brands with clean data, dependable operations and honest pricing.</p>
+          <p>Outside work he lives by the sea in Malta, a choice that reflects USN’s conviction that good work happens in calm, human-centred places.</p>
+        </div>
+
+        <div class="mt-12">
+          <p class="eyebrow">Principles</p>
+          <div class="mt-6 grid gap-4 sm:grid-cols-2">
+            {principles.map(([t, d]) => <div class="rounded-2xl border border-ink-900/8 bg-white p-6"><h3 class="font-display text-base font-semibold text-ink-900">{t}</h3><p class="mt-2 text-sm leading-relaxed text-ink-600">{d}</p></div>)}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-ink-950 text-white !py-20">
+    <div class="container-x">
+      <blockquote class="mx-auto max-w-3xl text-center">
+        <p class="font-display text-2xl font-semibold italic leading-snug sm:text-3xl">“Soon, your marketing won’t need to convince people — it will need to convince their assistants. The brands that win will be the ones whose data is clean, whose operations are reliable and whose pricing is honest.”</p>
+        <footer class="mt-6 text-sm text-mist-400">— {f.name}, on the future of digital commerce</footer>
+      </blockquote>
+    </div>
+  </section>
+  <CtaBand title={`Talk directly with ${f.name.split(' ')[0]}.`} text="Every first conversation at USN is with the founder. Bring your numbers and your questions; you will get a straight answer about whether and how we can help." />
+</Base>

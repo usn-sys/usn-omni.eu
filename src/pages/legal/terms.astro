@@ -1,0 +1,55 @@
+---
+import Legal from '../../layouts/Legal.astro';
+import { company, fullAddress } from '../../data/company';
+---
+<Legal title="Terms of Service" description="Terms of Service governing the provision of e-commerce management services by USN Ltd. (Malta). Governed by the laws of Malta." updated="9 November 2025">
+  <h2>1. Who we are</h2>
+  <p>These Terms of Service (“<strong>Terms</strong>”) govern the provision of services by <strong>{company.legalName}</strong>, a {company.legalForm}, registered with the {company.registry} under company number <strong>{company.registrationNumber}</strong>, with registered office at {fullAddress} (“<strong>USN</strong>”, “<strong>we</strong>”, “<strong>us</strong>”). You can contact us at <a href={`mailto:${company.email}`}>{company.email}</a> or {company.phone}.</p>
+  <p>These Terms apply to every business customer (“<strong>Client</strong>”, “<strong>you</strong>”) that engages USN. Our services are intended for businesses only and are not offered to consumers.</p>
+
+  <h2>2. Our services</h2>
+  <p>USN provides business-to-business e-commerce management services, including: (a) the day-to-day operation of online stores and sales channels; (b) the design, development, integration and maintenance of e-commerce technology; (c) growth, performance marketing and conversion optimisation services; and (d) the management of the Client’s own seller accounts on third-party sales channels (together, the “<strong>Services</strong>”). The Services are described on this website and defined precisely for each Client in a written proposal or statement of work (“<strong>Proposal</strong>”).</p>
+  <p>USN does not sell goods to the Client’s customers, does not take title to the Client’s stock, does not operate a marketplace or payment service, and does not collect or hold funds on behalf of the Client or the Client’s customers.</p>
+
+  <h2>3. Contract formation</h2>
+  <p>A contract is formed when the Client accepts a Proposal in writing (including by e-mail or electronic signature) or pays the first invoice issued under it. The Proposal, these Terms and any data processing agreement together form the agreement (“<strong>Agreement</strong>”). In case of conflict, the Proposal prevails over these Terms.</p>
+
+  <h2>4. Fees, invoicing and payment</h2>
+  <ul>
+    <li>Fees are stated in <strong>euro (EUR)</strong> and are exclusive of VAT. Maltese VAT is added where required by law; for VAT-registered Clients established in other EU member states, the reverse-charge mechanism applies and the Client accounts for VAT in its own country.</li>
+    <li><strong>Retainers</strong> are invoiced monthly in advance. <strong>Projects</strong> are invoiced according to the milestone schedule in the Proposal (by default 40% on signature and the balance on delivery of agreed milestones).</li>
+    <li>Invoices are payable within <strong>14 days</strong> of the invoice date by SEPA bank transfer or by card. Card payments are processed by a licensed third-party payment service provider; USN does not store card details.</li>
+    <li>Third-party costs (advertising budgets, software subscriptions, licences, platform fees) are paid by the Client directly to the relevant provider and are not invoiced by USN unless the Proposal expressly says otherwise.</li>
+    <li>Late payments bear interest at the statutory rate for commercial transactions under Maltese law. USN may suspend the Services after written notice if an invoice is more than 15 days overdue.</li>
+  </ul>
+
+  <h2>5. Term, cancellation and refunds</h2>
+  <p>Retainers have a minimum term of three (3) months unless the Proposal states otherwise, after which they continue month to month and may be terminated by either party with thirty (30) days’ written notice. Projects end on delivery of the final milestone. Cancellation and refund rights are set out in our <a href="/legal/refunds">Refund, Cancellation &amp; Delivery Policy</a>, which forms part of these Terms.</p>
+
+  <h2>6. Client obligations</h2>
+  <p>The Client shall: provide timely access, information and decisions reasonably required for the Services; ensure that it holds all rights, licences and consents for the products, content and accounts it asks USN to manage; and comply with the terms of the platforms and sales channels used. The Client remains responsible for its products, prices, consumer-facing terms and legal compliance in the markets in which it sells.</p>
+
+  <h2>7. Ownership and access</h2>
+  <p>All stores, domains, seller accounts, advertising accounts, data and code relating to the Client’s business are and remain the property of the Client. Where USN creates accounts on the Client’s behalf, it does so in the Client’s name. Upon full payment, USN assigns to the Client all deliverables created specifically for it; USN’s pre-existing tools, know-how and methodologies remain USN’s property and are licensed to the Client for use with the deliverables. Third-party components remain subject to their own licences.</p>
+
+  <h2>8. Confidentiality and data protection</h2>
+  <p>Each party shall keep the other’s confidential information confidential and use it only for the purposes of the Agreement. Where USN processes personal data on behalf of the Client, it does so as a processor under Regulation (EU) 2016/679 (GDPR) in accordance with a data processing agreement. USN’s processing of personal data as a controller is described in our <a href="/legal/privacy">Privacy Policy</a>.</p>
+
+  <h2>9. Service levels and warranties</h2>
+  <p>USN shall perform the Services with reasonable skill and care, in line with good industry practice and any service levels set out in the Proposal. Business-hours support is provided Monday to Friday, 09:00–18:00 CET, excluding Maltese public holidays. Except as expressly stated, USN gives no warranty as to commercial results, which depend on factors outside its control.</p>
+
+  <h2>10. Liability</h2>
+  <p>Nothing in these Terms limits liability for fraud, wilful misconduct or any liability that cannot be limited by law. Subject to that, USN’s total aggregate liability arising out of or in connection with the Agreement in any twelve-month period shall not exceed the fees paid by the Client to USN in that period, and USN shall not be liable for loss of profit, revenue, goodwill or data, or for any indirect or consequential loss.</p>
+
+  <h2>11. Termination for cause</h2>
+  <p>Either party may terminate the Agreement with immediate effect by written notice if the other party commits a material breach that is not remedied within 15 days of notice, or becomes insolvent. On termination USN shall hand over all deliverables, documentation and access credentials, and the Client shall pay for Services performed up to the termination date.</p>
+
+  <h2>12. Changes to these Terms</h2>
+  <p>USN may update these Terms from time to time by publishing the new version on this website. Changes apply to Proposals accepted after publication; existing Agreements continue under the Terms in force when they were formed unless both parties agree otherwise.</p>
+
+  <h2>13. Governing law and jurisdiction</h2>
+  <p><strong>These Terms of Service and any Agreement are governed by the laws of Malta.</strong> The courts of Malta shall have exclusive jurisdiction over any dispute arising out of or in connection with them, without prejudice to mandatory provisions of law applicable to the Client.</p>
+
+  <h2>14. Contact</h2>
+  <p>{company.legalName} · {fullAddress} · <a href={`mailto:${company.email}`}>{company.email}</a> · {company.phone}</p>
+</Legal>

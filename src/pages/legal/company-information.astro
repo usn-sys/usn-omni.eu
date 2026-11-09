@@ -1,0 +1,39 @@
+---
+import Legal from '../../layouts/Legal.astro';
+import { company, fullAddress } from '../../data/company';
+---
+<Legal title="Company Information" description="Legal notice and company information for USN Ltd., Malta: registered name, company number, registered office, contacts and regulatory information." updated="9 November 2025">
+  <h2>Legal notice</h2>
+  <p>This website is owned and operated by:</p>
+  <table>
+    <tbody>
+      <tr><th>Registered name</th><td>{company.legalName}</td></tr>
+      <tr><th>Trading name</th><td>{company.brand} · usn-omni</td></tr>
+      <tr><th>Legal form</th><td>{company.legalForm}</td></tr>
+      <tr><th>Company registration number</th><td>{company.registrationNumber}</td></tr>
+      <tr><th>Register</th><td>{company.registry} (registry.mbr.mt)</td></tr>
+      {company.vatNumber && <tr><th>VAT number</th><td>{company.vatNumber}</td></tr>}
+      <tr><th>Registered office</th><td>{fullAddress}</td></tr>
+      <tr><th>Managing director</th><td>{company.founder.name}</td></tr>
+      <tr><th>E-mail</th><td><a href={`mailto:${company.email}`}>{company.email}</a></td></tr>
+      <tr><th>Telephone</th><td><a href={company.phoneHref}>{company.phone}</a></td></tr>
+      <tr><th>Business hours</th><td>{company.hours}</td></tr>
+      <tr><th>Website</th><td>{company.website}</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Nature of business</h2>
+  <p>{company.legalName} provides business-to-business e-commerce management services: operation of online stores and sales channels, development and integration of e-commerce technology, growth and performance marketing management, and multichannel sales management. The company does not sell goods to consumers, does not hold client stock or funds, and does not provide payment, financial or investment services.</p>
+
+  <h2>Payments to USN</h2>
+  <p>Services are invoiced in EUR by {company.legalName} and are payable by SEPA bank transfer or by card through a licensed payment service provider. Bank details are printed on every invoice. We never ask for payment to personal accounts or through unofficial channels.</p>
+
+  <h2>Dispute resolution</h2>
+  <p>Our contracts are governed by the laws of Malta and subject to the jurisdiction of the Maltese courts. We aim to resolve any dispute amicably first; please contact us at <a href={`mailto:${company.email}`}>{company.email}</a>.</p>
+
+  <h2>Intellectual property</h2>
+  <p>The content of this website (texts, design, logo) is the property of {company.legalName}. Third-party trademarks mentioned on this site (for example Shopify, Adobe Commerce, Amazon, eBay) belong to their respective owners and are referenced solely to describe compatibility of our services; no affiliation or endorsement is implied.</p>
+
+  <h2>Hosting</h2>
+  <p>This is a static website served over HTTPS. Hosting provider details are available on request.</p>
+</Legal>

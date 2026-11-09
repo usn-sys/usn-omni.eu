@@ -1,0 +1,1 @@
+{ "name": "USN Ltd.", "short_name": "USN", "icons": [{ "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }], "theme_color": "#0b1120", "background_color": "#fbfaf7", "display": "browser", "start_url": "/" }

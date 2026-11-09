@@ -1,0 +1,87 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { mainNav, serviceNav } from '../data/nav';
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith(href);
+---
+<header id="site-header" class="sticky top-0 z-50 border-b border-ink-900/5 bg-sand-50/80 backdrop-blur-xl transition-shadow">
+  <div class="container-x flex h-[72px] items-center justify-between gap-6">
+    <a href="/" class="shrink-0" aria-label="USN — home"><Logo /></a>
+
+    <nav class="hidden items-center gap-1 lg:flex" aria-label="Main">
+      {mainNav.map((item) => item.href === '/services' ? (
+        <div class="group relative">
+          <a href={item.href} class:list={['flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium transition-colors hover:bg-ink-900/5', isActive(item.href) ? 'text-ink-900' : 'text-ink-600']} aria-haspopup="true">
+            {item.label}
+            <svg class="h-3.5 w-3.5 transition-transform group-hover:rotate-180" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 8 4 4 4-4"/></svg>
+          </a>
+          <div class="invisible absolute left-1/2 top-full z-50 w-[560px] -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+            <div class="grid grid-cols-2 gap-1 rounded-2xl border border-ink-900/8 bg-white p-2 shadow-lift">
+              {serviceNav.map((s) => (
+                <a href={s.href} class="rounded-xl p-4 transition-colors hover:bg-mist-100">
+                  <div class="text-sm font-semibold text-ink-900">{s.label}</div>
+                  <div class="mt-1 text-xs leading-relaxed text-ink-600">{s.blurb}</div>
+                </a>
+              ))}
+              <a href="/services" class="col-span-2 flex items-center justify-between rounded-xl bg-ink-900 px-4 py-3 text-sm font-semibold text-white hover:bg-ink-700">
+                All services <Icon name="arrow" class="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <a href={item.href} class:list={['rounded-full px-4 py-2 text-sm font-medium transition-colors hover:bg-ink-900/5', isActive(item.href) ? 'text-ink-900' : 'text-ink-600']} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
+      ))}
+    </nav>
+
+    <div class="hidden items-center gap-3 lg:flex">
+      <a href="/contact" class="btn-primary !px-5 !py-2.5">Talk to us <Icon name="arrow" class="h-4 w-4" /></a>
+    </div>
+
+    <button id="menu-open" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-ink-900/10 lg:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <Icon name="menu" class="h-5 w-5" />
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="fixed inset-0 z-[60] hidden bg-ink-950/60 backdrop-blur-sm lg:hidden" role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="absolute inset-y-0 right-0 flex w-[min(92vw,420px)] flex-col bg-sand-50 shadow-lift">
+      <div class="flex h-[72px] items-center justify-between px-5">
+        <Logo />
+        <button id="menu-close" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-ink-900/10" aria-label="Close menu"><Icon name="close" class="h-5 w-5" /></button>
+      </div>
+      <nav class="flex-1 overflow-y-auto px-5 pb-8" aria-label="Mobile">
+        <a href="/" class="block border-b border-ink-900/8 py-4 text-lg font-semibold">Home</a>
+        <div class="border-b border-ink-900/8 py-4">
+          <a href="/services" class="text-lg font-semibold">Services</a>
+          <div class="mt-3 grid gap-2 pl-3">
+            {serviceNav.map((s) => <a href={s.href} class="text-[15px] text-ink-600">{s.label}</a>)}
+          </div>
+        </div>
+        {mainNav.filter(i => i.href !== '/services').map((item) => (
+          <a href={item.href} class="block border-b border-ink-900/8 py-4 text-lg font-semibold">{item.label}</a>
+        ))}
+        <a href="/contact" class="btn-primary mt-6 w-full">Talk to us</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('site-header');
+  const menu = document.getElementById('mobile-menu');
+  const open = document.getElementById('menu-open');
+  const close = document.getElementById('menu-close');
+  const setOpen = (v: boolean) => {
+    if (!menu || !open) return;
+    menu.classList.toggle('hidden', !v);
+    open.setAttribute('aria-expanded', String(v));
+    document.body.style.overflow = v ? 'hidden' : '';
+  };
+  open?.addEventListener('click', () => setOpen(true));
+  close?.addEventListener('click', () => setOpen(false));
+  menu?.addEventListener('click', (e) => { if (e.target === menu) setOpen(false); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+  const onScroll = () => header?.classList.toggle('shadow-soft', window.scrollY > 8);
+  onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+</script>

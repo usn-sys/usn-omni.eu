@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+---
+<Base title="Page not found" description="The page you were looking for does not exist." noindex>
+  <section class="section">
+    <div class="container-x text-center">
+      <p class="eyebrow justify-center">404</p>
+      <h1 class="h-display mt-5">This page does not exist.</h1>
+      <p class="lead mx-auto mt-6 max-w-xl">The link may be outdated. Try the home page or get in touch and we will point you in the right direction.</p>
+      <div class="mt-10 flex justify-center gap-3"><a href="/" class="btn-primary">Back to home</a><a href="/contact" class="btn-ghost">Contact us <Icon name="arrow" class="h-4 w-4" /></a></div>
+    </div>
+  </section>
+</Base>

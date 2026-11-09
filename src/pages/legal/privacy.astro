@@ -1,0 +1,38 @@
+---
+import Legal from '../../layouts/Legal.astro';
+import { company, fullAddress } from '../../data/company';
+---
+<Legal title="Privacy Policy" description="How USN Ltd. (Malta) collects and processes personal data under the GDPR, and your rights." updated="9 November 2025">
+  <h2>1. Data controller</h2>
+  <p>The controller of personal data processed through this website and in the course of our business is <strong>{company.legalName}</strong>, company number {company.registrationNumber}, {fullAddress}. Contact: <a href={`mailto:${company.email}`}>{company.email}</a>, {company.phone}. We have not appointed a Data Protection Officer because we are not required to; privacy requests are handled by the managing director.</p>
+
+  <h2>2. What data we process and why</h2>
+  <table>
+    <thead><tr><th>Context</th><th>Data</th><th>Purpose</th><th>Legal basis (GDPR art. 6)</th><th>Retention</th></tr></thead>
+    <tbody>
+      <tr><td>Enquiries (contact form, e-mail, phone)</td><td>Name, company, e-mail, phone, website, message content</td><td>Replying to your enquiry and preparing a proposal</td><td>(b) pre-contractual steps; (f) legitimate interest in responding to business contacts</td><td>24 months after last contact, unless a contract follows</td></tr>
+      <tr><td>Clients and suppliers</td><td>Contact details of representatives, contract and billing data, correspondence</td><td>Performing the contract, invoicing, accounting, legal obligations</td><td>(b) contract; (c) legal obligation (Maltese tax and accounting law)</td><td>10 years from the end of the financial year, as required by Maltese law</td></tr>
+      <tr><td>Website visitors</td><td>IP address, user agent, pages requested (server logs)</td><td>Security, abuse prevention, keeping the site running</td><td>(f) legitimate interest</td><td>Up to 30 days</td></tr>
+      <tr><td>Job applicants</td><td>CV and application details</td><td>Recruitment</td><td>(b) pre-contractual steps</td><td>6 months after the process ends, unless you agree to longer</td></tr>
+    </tbody>
+  </table>
+  <p>We do not use this website for marketing profiling, we do not run advertising trackers on it and we do not sell personal data.</p>
+
+  <h2>3. Processing on behalf of our clients</h2>
+  <p>When we manage a client’s online store, customer care or sales channels, we process the personal data of the client’s customers (such as names, addresses and order details) <strong>as a processor</strong>, on the client’s documented instructions and under a data processing agreement pursuant to GDPR article 28. For such data, the client is the controller and its privacy policy applies; please address requests to the relevant shop.</p>
+
+  <h2>4. Recipients</h2>
+  <p>We share personal data only with: service providers that host our e-mail, documents and project tools (located in the EU or covered by appropriate safeguards); our accountants, auditors and legal advisers; payment service providers, for the processing of invoices paid by card; and public authorities where required by law. We do not transfer personal data outside the European Economic Area unless an adequacy decision or standard contractual clauses apply.</p>
+
+  <h2>5. Cookies</h2>
+  <p>This website uses no cookies for advertising or profiling. Details are in our <a href="/legal/cookies">Cookie Policy</a>.</p>
+
+  <h2>6. Your rights</h2>
+  <p>You have the right to access, rectify and erase your personal data, to restrict or object to processing, to data portability, and to withdraw consent where processing is based on consent. To exercise these rights write to <a href={`mailto:${company.email}`}>{company.email}</a>. We reply within one month. You also have the right to lodge a complaint with the Maltese supervisory authority, the <strong>Information and Data Protection Commissioner</strong> (idpc.org.mt), or with the authority in your country of residence.</p>
+
+  <h2>7. Security</h2>
+  <p>We apply appropriate technical and organisational measures, including access control on a need-to-know basis, multi-factor authentication on business tools, encryption in transit (this website is served over HTTPS only) and documented off-boarding procedures when an engagement ends.</p>
+
+  <h2>8. Changes</h2>
+  <p>We may update this policy; the date at the top shows the latest version. Material changes will be highlighted on this page.</p>
+</Legal>

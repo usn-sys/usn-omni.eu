@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import { company } from '../data/company';
+const steps = [
+  { n: '01', t: 'Discovery call', time: '30–45 minutes · free', d: 'A conversation with the founder about your business, your numbers and what is not working. We tell you honestly whether USN is a fit.' },
+  { n: '02', t: 'Audit & assessment', time: '1–2 weeks · free or fixed fee', d: 'We review your store, channels, systems and processes. You receive a written assessment with prioritised recommendations — yours to keep, whether or not you hire us.' },
+  { n: '03', t: 'Written proposal', time: '3–5 business days', d: 'Scope, deliverables, team, timeline, monthly fee or project price, payment terms and exit terms. No hidden costs. The proposal becomes the schedule to our service agreement.' },
+  { n: '04', t: 'Agreement & onboarding', time: '2–4 weeks', d: 'You sign the service agreement and pay the first invoice. We set up access (always in your name), write procedures, agree KPIs and escalation paths.' },
+  { n: '05', t: 'Delivery', time: 'ongoing or per milestone', d: 'A named engagement manager runs the work. Weekly status, shared task board, monthly KPI review. Projects are delivered in two-week sprints with demos.' },
+  { n: '06', t: 'Review, adjust or exit', time: 'monthly', d: 'Scope is adjusted together at the monthly review. Retainers can be ended with 30 days’ notice after the minimum term; you keep all accounts, documentation and code.' },
+];
+const guarantees = [
+  ['lock', 'You own everything', 'Stores, ad and seller accounts, domains, data and code are in your company’s name from day one.'],
+  ['doc', 'Written scope and pricing', 'Every engagement is defined in a proposal and a service agreement governed by the laws of Malta.'],
+  ['shield', 'No funds handled', 'USN never collects payments from your customers and never holds your money. We invoice you; your customers pay you.'],
+  ['clock', 'Clear service levels', 'Response times, business-hours coverage and escalation paths are written into the agreement.'],
+];
+---
+<Base title="How we work — from discovery call to running operation" description="How an engagement with USN works: free discovery call, audit, written proposal, service agreement, delivery with monthly reviews and clear exit terms. Payment by invoice from Malta.">
+  <PageHero eyebrow="How we work" title="A transparent process, from the first call to a running operation." lead="Everything is written down before it starts: scope, price, team, timeline and how you can leave. Here is exactly what happens." crumbs={[{ label: 'How we work' }]} />
+
+  <section class="section">
+    <div class="container-x">
+      <ol class="relative grid gap-6 lg:grid-cols-3">
+        {steps.map((s, i) => <li class="card" data-reveal={String(Math.min(i % 3 + 1, 4))}><div class="flex items-center justify-between"><span class="font-display text-3xl font-bold text-sea-500/70">{s.n}</span><span class="rounded-full bg-sand-100 px-3 py-1 text-xs font-medium text-ink-600">{s.time}</span></div><h2 class="h-card mt-4">{s.t}</h2><p class="mt-3 text-sm leading-relaxed text-ink-600">{s.d}</p></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container-x grid gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-5" data-reveal>
+        <p class="eyebrow">How you pay</p>
+        <h2 class="h-section mt-5">Simple, invoice-based billing from a Malta-registered company.</h2>
+        <div class="mt-6 space-y-4 text-ink-700">
+          <p><strong>Retainers</strong> are invoiced monthly in advance. <strong>Projects</strong> are invoiced per milestone, typically 40% on signature and the balance on delivery of agreed milestones.</p>
+          <p>Invoices are issued by <strong>{company.legalName}</strong>, {company.address.city}, Malta, in <strong>EUR</strong>, and are payable within <strong>14 days</strong> by SEPA bank transfer or by card. Prices are exclusive of VAT; Maltese VAT is applied where required by law, and the reverse-charge mechanism applies to VAT-registered business customers in other EU member states.</p>
+          <p>Advertising budgets, platform subscriptions and third-party licences are always paid by you directly to the provider — USN never resells or marks up third-party spend.</p>
+        </div>
+        <a href="/pricing" class="btn-primary mt-8">See indicative pricing <Icon name="arrow" class="h-4 w-4" /></a>
+      </div>
+      <div class="grid gap-5 sm:grid-cols-2 lg:col-span-7">
+        {guarantees.map(([icon, t, d], i) => <div class="rounded-2xl border border-ink-900/8 bg-sand-50 p-7" data-reveal={String(i + 1)}><span class="flex h-10 w-10 items-center justify-center rounded-lg bg-white text-sea-700 shadow-soft"><Icon name={icon} class="h-5 w-5" /></span><h3 class="h-card mt-5 !text-lg">{t}</h3><p class="mt-2 text-sm leading-relaxed text-ink-600">{d}</p></div>)}
+      </div>
+    </div>
+  </section>
+  <CtaBand />
+</Base>

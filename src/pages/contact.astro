@@ -1,0 +1,67 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import { company, fullAddress } from '../data/company';
+const schema = [{ '@context': 'https://schema.org', '@type': 'ContactPage', name: 'Contact USN', url: `${company.website}/contact`, mainEntity: { '@id': `${company.website}/#organization` } }];
+---
+<Base title="Contact USN — book a discovery call" description={`Contact USN Ltd. in Malta: ${company.email}, ${company.phone}. Registered office at ${fullAddress}. Business hours ${company.hours}.`} schema={schema}>
+  <PageHero eyebrow="Contact" title="Let’s talk about your online business." lead="Tell us about your store, your channels and what is not working. You will hear back from a real person within one business day." crumbs={[{ label: 'Contact' }]} />
+
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-5" data-reveal>
+        <div class="space-y-6">
+          <a href={`mailto:${company.email}`} class="card flex items-start gap-4"><span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-ink-900 text-sea-400"><Icon name="mail" class="h-5 w-5" /></span><div><div class="text-xs font-semibold uppercase tracking-wider text-ink-500">Email</div><div class="mt-1 font-semibold text-ink-900">{company.email}</div><div class="mt-1 text-sm text-ink-600">Replies within one business day.</div></div></a>
+          <a href={company.phoneHref} class="card flex items-start gap-4"><span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-ink-900 text-sea-400"><Icon name="phone" class="h-5 w-5" /></span><div><div class="text-xs font-semibold uppercase tracking-wider text-ink-500">Phone</div><div class="mt-1 font-semibold text-ink-900">{company.phone}</div><div class="mt-1 text-sm text-ink-600">{company.hours}. International dialling available.</div></div></a>
+          <div class="card flex items-start gap-4"><span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-ink-900 text-sea-400"><Icon name="pin" class="h-5 w-5" /></span><div><div class="text-xs font-semibold uppercase tracking-wider text-ink-500">Registered office</div><address class="mt-1 not-italic font-semibold leading-relaxed text-ink-900">{company.legalName}<br />{company.address.line1}<br />{company.address.line2}<br />{company.address.city} {company.address.postcode}, {company.address.country}</address><div class="mt-1 text-sm text-ink-600">Company number {company.registrationNumber} · Visits by appointment.</div></div></div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7" data-reveal="2">
+        <form id="contact-form" class="rounded-3xl border border-ink-900/8 bg-white p-8 shadow-soft sm:p-10" novalidate>
+          <h2 class="h-card !text-2xl">Book a discovery call</h2>
+          <p class="mt-2 text-sm text-ink-600">Fill in what you can. Submitting opens a pre-filled email to {company.email} from your mail client — nothing is stored on this website.</p>
+          <div class="mt-8 grid gap-5 sm:grid-cols-2">
+            <label class="block text-sm"><span class="font-medium text-ink-900">Your name *</span><input name="name" required autocomplete="name" class="mt-2 w-full rounded-xl border border-ink-900/15 bg-sand-50 px-4 py-3 text-ink-900 outline-none transition focus:border-sea-500 focus:bg-white" /></label>
+            <label class="block text-sm"><span class="font-medium text-ink-900">Company *</span><input name="company" required autocomplete="organization" class="mt-2 w-full rounded-xl border border-ink-900/15 bg-sand-50 px-4 py-3 text-ink-900 outline-none transition focus:border-sea-500 focus:bg-white" /></label>
+            <label class="block text-sm"><span class="font-medium text-ink-900">Work email *</span><input name="email" type="email" required autocomplete="email" class="mt-2 w-full rounded-xl border border-ink-900/15 bg-sand-50 px-4 py-3 text-ink-900 outline-none transition focus:border-sea-500 focus:bg-white" /></label>
+            <label class="block text-sm"><span class="font-medium text-ink-900">Website</span><input name="website" type="url" placeholder="https://" autocomplete="url" class="mt-2 w-full rounded-xl border border-ink-900/15 bg-sand-50 px-4 py-3 text-ink-900 outline-none transition focus:border-sea-500 focus:bg-white" /></label>
+            <label class="block text-sm sm:col-span-2"><span class="font-medium text-ink-900">What are you interested in?</span>
+              <select name="interest" class="mt-2 w-full rounded-xl border border-ink-900/15 bg-sand-50 px-4 py-3 text-ink-900 outline-none transition focus:border-sea-500 focus:bg-white">
+                <option>E-commerce Operations Management</option><option>Technology & Integrations</option><option>Growth & Performance</option><option>Multichannel Sales Management</option><option>Audit & Roadmap</option><option>Full-Service Partnership</option><option>Something else</option>
+              </select></label>
+            <label class="block text-sm sm:col-span-2"><span class="font-medium text-ink-900">Tell us about your business *</span><textarea name="message" rows="5" required class="mt-2 w-full rounded-xl border border-ink-900/15 bg-sand-50 px-4 py-3 text-ink-900 outline-none transition focus:border-sea-500 focus:bg-white" placeholder="Platforms, channels, approximate online revenue, what is not working…"></textarea></label>
+          </div>
+          <label class="mt-6 flex items-start gap-3 text-sm text-ink-600"><input type="checkbox" name="consent" required class="mt-1 h-4 w-4 rounded border-ink-900/30 accent-sea-600" /><span>I have read the <a href="/legal/privacy" class="underline">Privacy Policy</a> and agree that USN Ltd. may use these details to reply to my enquiry. *</span></label>
+          <div class="mt-8 flex flex-wrap items-center gap-4">
+            <button type="submit" class="btn-primary">Send enquiry <Icon name="arrow" class="h-4 w-4" /></button>
+            <p id="form-status" class="text-sm text-ink-500" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-24">
+    <div class="container-x">
+      <div class="overflow-hidden rounded-3xl border border-ink-900/8 shadow-soft">
+        <iframe title="Map — USN Ltd., Quantum House, Ta' Xbiex, Malta" src="https://www.openstreetmap.org/export/embed.html?bbox=14.4905%2C35.8945%2C14.5015%2C35.9015&amp;layer=mapnik&amp;marker=35.898%2C14.496" class="h-[360px] w-full" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <script define:vars={{ email: company.email }}>
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      const d = new FormData(form);
+      const subject = `Discovery call request — ${d.get('company')} (${d.get('interest')})`;
+      const body = [`Name: ${d.get('name')}`, `Company: ${d.get('company')}`, `Email: ${d.get('email')}`, `Website: ${d.get('website') || '-'}`, `Interest: ${d.get('interest')}`, '', String(d.get('message'))].join('\n');
+      window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      if (status) status.textContent = `Your email client should open now. If it does not, write to ${email}.`;
+    });
+  </script>
+</Base>

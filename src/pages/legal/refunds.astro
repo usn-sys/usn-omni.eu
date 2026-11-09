@@ -1,0 +1,44 @@
+---
+import Legal from '../../layouts/Legal.astro';
+import { company, fullAddress } from '../../data/company';
+---
+<Legal title="Refund, Cancellation & Delivery Policy" description="How USN Ltd. delivers its services, how clients can cancel, and when fees are refunded." updated="9 November 2025">
+  <p>This policy explains how <strong>{company.legalName}</strong> (“USN”) delivers its services, how you can cancel, and when and how fees are refunded. It forms part of our <a href="/legal/terms">Terms of Service</a>. We provide services to businesses; nothing here affects rights that cannot be excluded by law.</p>
+
+  <h2>1. Service delivery</h2>
+  <p>USN provides professional services, not physical or downloadable goods, so nothing is “shipped”. Delivery works as follows:</p>
+  <ul>
+    <li><strong>Retainers</strong> (e.g. managed operations, growth management, multichannel management) are delivered continuously from the start date in the Proposal, during business hours Monday to Friday, 09:00–18:00 CET. Weekly status reports and a monthly KPI review are included.</li>
+    <li><strong>Projects</strong> (e.g. technology builds, integrations, audits) are delivered in milestones with the dates stated in the Proposal; each milestone is presented to you for acceptance, and is deemed accepted if no written objection is received within 10 business days.</li>
+    <li><strong>Onboarding</strong> typically takes two to four weeks from signature and payment of the first invoice.</li>
+    <li>Deliverables (documents, code, procedures, dashboards) are provided electronically, in your own repositories, accounts and tools.</li>
+  </ul>
+  <p>If we expect a delay, we tell you in writing with a new date. If a delay attributable to USN exceeds 30 days on a project milestone, you may cancel the affected milestone and receive a refund of any amount prepaid for it.</p>
+
+  <h2>2. Cancellation by the Client</h2>
+  <table>
+    <thead><tr><th>Situation</th><th>How to cancel</th><th>Refund</th></tr></thead>
+    <tbody>
+      <tr><td>Project deposit paid, work not yet started</td><td>Written notice at any time before the kick-off date</td><td>100% of the deposit refunded within 14 days</td></tr>
+      <tr><td>Project in progress</td><td>Written notice</td><td>You pay for milestones delivered and work performed to date (pro rata); any excess prepaid is refunded within 14 days</td></tr>
+      <tr><td>Retainer within the minimum term (3 months)</td><td>Written notice; the retainer ends at the end of the minimum term</td><td>No refund of months already delivered; months invoiced in advance beyond the end date are refunded</td></tr>
+      <tr><td>Retainer after the minimum term</td><td>30 days’ written notice</td><td>Any period prepaid beyond the end date is refunded pro rata within 14 days</td></tr>
+      <tr><td>Audit &amp; Roadmap</td><td>Written notice before the kick-off interview</td><td>100% refunded; after the kick-off, 50% refunded; after delivery of the written assessment, non-refundable</td></tr>
+    </tbody>
+  </table>
+
+  <h2>3. Cancellation by USN</h2>
+  <p>If USN terminates the Agreement other than for your breach, we refund all fees prepaid for services not yet delivered, in full, within 14 days.</p>
+
+  <h2>4. Dissatisfaction with the service</h2>
+  <p>If a deliverable does not meet the agreed scope, tell us in writing within 10 business days of delivery. We will correct it at no cost within a reasonable time. If we cannot, you are entitled to a refund of the fee attributable to the deliverable. For retainers, if a month’s service falls materially short of the agreed service levels, we credit or refund a proportionate part of that month’s fee.</p>
+
+  <h2>5. How refunds are paid</h2>
+  <p>Refunds are made to the original payment method (bank account or card) within 14 days of the refund being agreed, in EUR. Bank charges applied by your bank are not refundable. Where a refund relates to an invoice on which VAT was charged, a credit note is issued.</p>
+
+  <h2>6. Payment disputes</h2>
+  <p>If you believe you have been charged incorrectly, please contact us before raising a dispute with your bank or card issuer, so that we can resolve it quickly: <a href={`mailto:${company.email}`}>{company.email}</a> or {company.phone}. We acknowledge every billing query within two business days.</p>
+
+  <h2>7. Contact</h2>
+  <p>{company.legalName} · {fullAddress} · <a href={`mailto:${company.email}`}>{company.email}</a> · {company.phone}. This policy is governed by the laws of Malta.</p>
+</Legal>

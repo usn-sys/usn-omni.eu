@@ -1,0 +1,24 @@
+---
+import Icon from './Icon.astro';
+import { company } from '../data/company';
+interface Props { title?: string; text?: string; }
+const { title = 'Let’s talk about your store, your stack and your next market.', text = 'A 30-minute discovery call with the founder. No sales deck — we look at your numbers, your operations and tell you honestly where we can help.' } = Astro.props;
+---
+<section class="section !pt-0">
+  <div class="container-x">
+    <div class="relative overflow-hidden rounded-3xl bg-ink-950 px-8 py-14 text-white sm:px-14 sm:py-20">
+      <div class="absolute inset-0 grid-bg"></div>
+      <div class="absolute inset-0 glow"></div>
+      <div class="relative grid items-center gap-10 lg:grid-cols-12">
+        <div class="lg:col-span-8">
+          <h2 class="h-section !text-white">{title}</h2>
+          <p class="mt-5 max-w-2xl text-lg text-mist-300">{text}</p>
+        </div>
+        <div class="flex flex-col gap-3 lg:col-span-4 lg:items-end">
+          <a href="/contact" class="btn-accent">Book a discovery call <Icon name="arrow" class="h-4 w-4" /></a>
+          <a href={`mailto:${company.email}`} class="btn-ghost-light">{company.email}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

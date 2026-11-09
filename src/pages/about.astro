@@ -1,0 +1,83 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import { company, fullAddress } from '../data/company';
+const values = [
+  ['users', 'Respect for people', 'Clients, colleagues and end customers are people first. We write clear scopes, keep promises and say no when something is not in your interest.'],
+  ['repeat', 'Agile, but accountable', 'Short cycles, visible progress, measurable outcomes. Agility never becomes an excuse for vagueness about cost or responsibility.'],
+  ['compass', 'Honest outsourcing', 'We believe outsourcing is often the first step toward building your own capability. We document everything and train your team along the way.'],
+  ['wave', 'Human-centred, nature-connected', 'We are based by the sea in Malta and deliberately work in a calm, non-urban setting. It shows in the quality of attention your project gets.'],
+];
+---
+<Base title="About USN — an e-commerce operating partner based in Malta" description={`USN Ltd. is a Malta-registered e-commerce management company (company number ${company.registrationNumber}) serving brands across Europe. Learn about our mission, values and how we are organised.`}>
+  <PageHero eyebrow="About USN" title="A small, senior team that runs online businesses for brands across Europe." lead="USN was founded in Malta to give growing brands what large retailers have in-house: a complete e-commerce operations, technology and growth team — without the overhead." crumbs={[{ label: 'About' }]} />
+
+  <section class="section">
+    <div class="container-x grid gap-14 lg:grid-cols-12">
+      <div class="lg:col-span-7" data-reveal>
+        <p class="eyebrow">What we do</p>
+        <h2 class="h-section mt-5">We manage e-commerce. Nothing else.</h2>
+        <div class="mt-6 space-y-5 text-lg leading-relaxed text-ink-700">
+          <p>USN Ltd. provides business-to-business services to companies that sell online: the day-to-day management of their stores and sales channels, the technology that connects their systems, and the commercial work that makes them grow.</p>
+          <p>We do not sell goods to consumers, we do not hold our clients’ stock or funds, and we do not operate a marketplace. Our clients remain the owners of every platform, account and piece of code; we operate them under a written service agreement and are paid a monthly fee or a project price, invoiced from Malta.</p>
+          <p>With an extensive history in the digital sector, our team manages business ventures and projects using agile methodologies, with respect for both individuals and clients. We are proud to serve as a model for progressive work practices, offering our services to companies of every size while embracing a human-centred, non-urban working environment.</p>
+        </div>
+      </div>
+      <div class="lg:col-span-5" data-reveal="2">
+        <div class="rounded-3xl border border-ink-900/8 bg-white p-8 shadow-soft">
+          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-ink-500">Company facts</p>
+          <dl class="mt-5 divide-y divide-ink-900/8 text-sm">
+            {[
+              ['Legal name', company.legalName],
+              ['Legal form', company.legalForm],
+              ['Registration number', `${company.registrationNumber} — ${company.registry}`],
+              ...(company.vatNumber ? [['VAT number', company.vatNumber]] : []),
+              ['Registered office', fullAddress],
+              ['Leadership', `${company.founder.name}, ${company.founder.role}`],
+              ['Clients served in', 'Italy, Malta and the wider European Union; selected international projects'],
+              ['Working languages', company.languages.join(', ')],
+              ['Business hours', company.hours],
+            ].map(([k, v]) => <div class="grid grid-cols-[9rem_1fr] gap-4 py-3"><dt class="text-ink-500">{k}</dt><dd class="font-medium text-ink-900">{v}</dd></div>)}
+          </dl>
+          <a href="/legal/company-information" class="link-underline mt-6 inline-flex items-center gap-2 text-sm">Full company information <Icon name="arrow" class="h-4 w-4" /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container-x">
+      <div class="max-w-2xl" data-reveal>
+        <p class="eyebrow">Our motto</p>
+        <h2 class="h-section mt-5">“{company.motto}”</h2>
+        <p class="lead mt-6">Good work for a client is work that is sustainable for the people doing it, honest towards the end customer and respectful of the environment we live in. That is the standard we hold every engagement to.</p>
+      </div>
+      <div class="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        {values.map(([icon, t, d], i) => <div class="rounded-2xl border border-ink-900/8 bg-sand-50 p-7" data-reveal={String(i + 1)}><span class="flex h-10 w-10 items-center justify-center rounded-lg bg-white text-sea-700 shadow-soft"><Icon name={icon} class="h-5 w-5" /></span><h3 class="h-card mt-5 !text-lg">{t}</h3><p class="mt-2 text-sm leading-relaxed text-ink-600">{d}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-6" data-reveal>
+        <p class="eyebrow">Where we are</p>
+        <h2 class="h-section mt-5">Headquartered in Ta’ Xbiex, Malta — in the European Union.</h2>
+        <p class="lead mt-6">Malta gives us an EU legal framework, English as an official language and a time zone that overlaps with every European client. Our registered office is at Quantum House, on the Ta’ Xbiex seafront, a few minutes from Valletta.</p>
+        <address class="mt-8 not-italic text-ink-700">
+          <strong class="text-ink-900">{company.legalName}</strong><br />{company.address.line1}<br />{company.address.line2}<br />{company.address.city} {company.address.postcode}, {company.address.country}<br />
+          <a href={`mailto:${company.email}`} class="text-sea-700 underline">{company.email}</a> · <a href={company.phoneHref} class="text-sea-700 underline">{company.phone}</a>
+        </address>
+      </div>
+      <div class="lg:col-span-6" data-reveal="2">
+        <div class="overflow-hidden rounded-3xl border border-ink-900/8 shadow-soft">
+          <iframe title="Map — Quantum House, 75 Abate Rigord Street, Ta' Xbiex, Malta" src="https://www.openstreetmap.org/export/embed.html?bbox=14.4905%2C35.8945%2C14.5015%2C35.9015&amp;layer=mapnik&amp;marker=35.898%2C14.496" class="h-[380px] w-full" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <p class="mt-2 text-xs text-ink-500">Map data © OpenStreetMap contributors.</p>
+      </div>
+    </div>
+  </section>
+  <CtaBand />
+</Base>

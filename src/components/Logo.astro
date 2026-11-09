@@ -1,0 +1,12 @@
+---
+interface Props { class?: string; light?: boolean; }
+const { class: cls = 'h-8', light = false } = Astro.props;
+---
+<span class:list={['inline-flex items-center gap-2.5 font-display font-bold tracking-tight', cls, light ? 'text-white' : 'text-ink-900']}>
+  <svg viewBox="0 0 40 40" class="h-[1.6em] w-[1.6em]" aria-hidden="true">
+    <rect width="40" height="40" rx="11" class={light ? 'fill-white' : 'fill-ink-900'} />
+    <path d="M11 12v9.5a9 9 0 0 0 18 0V12" fill="none" stroke-width="3.6" stroke-linecap="round" class={light ? 'stroke-ink-900' : 'stroke-white'} />
+    <circle cx="29" cy="12" r="3" class="fill-sea-500" />
+  </svg>
+  <span class="text-[1.15em] leading-none">USN<span class="text-sea-500">.</span></span>
+</span>

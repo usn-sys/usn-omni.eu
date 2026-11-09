@@ -1,0 +1,21 @@
+---
+import Icon from './Icon.astro';
+interface Props { eyebrow: string; title: string; lead?: string; dark?: boolean; crumbs?: { label: string; href?: string }[]; }
+const { eyebrow, title, lead, dark = true, crumbs = [] } = Astro.props;
+---
+<section class:list={['relative overflow-hidden', dark ? 'bg-ink-950 text-white' : 'bg-sand-50']}>
+  {dark && <div class="absolute inset-0 grid-bg"></div>}
+  {dark && <div class="absolute inset-0 glow"></div>}
+  <div class="container-x relative pb-16 pt-14 sm:pb-20 sm:pt-20 lg:pb-24 lg:pt-24">
+    {crumbs.length > 0 && (
+      <nav aria-label="Breadcrumb" class:list={['mb-8 flex flex-wrap items-center gap-2 text-xs', dark ? 'text-mist-400' : 'text-ink-500']}>
+        <a href="/" class="hover:underline">Home</a>
+        {crumbs.map((c) => (<><span aria-hidden="true">/</span>{c.href ? <a href={c.href} class="hover:underline">{c.label}</a> : <span class={dark ? 'text-white' : 'text-ink-900'}>{c.label}</span>}</>))}
+      </nav>
+    )}
+    <p class:list={['eyebrow', dark && 'eyebrow-light']}>{eyebrow}</p>
+    <h1 class:list={['h-display mt-5 max-w-4xl', dark && '!text-white']}>{title}</h1>
+    {lead && <p class:list={['lead mt-6 max-w-2xl', dark && '!text-mist-300']}>{lead}</p>}
+    <slot />
+  </div>
+</section>

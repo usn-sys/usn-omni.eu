@@ -1,0 +1,193 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Faq from '../components/Faq.astro';
+import { existsSync } from 'node:fs';
+import { company } from '../data/company';
+const hasPhoto = existsSync('public/founder.jpg');
+import { serviceNav } from '../data/nav';
+
+const services = [
+  { icon: 'store', ...serviceNav[0], points: ['Catalogue & content operations', 'Order, fulfilment & returns coordination', 'Multilingual customer care'] },
+  { icon: 'code', ...serviceNav[1], points: ['Shopify, Magento, WooCommerce, headless', 'ERP / PIM / CRM integrations', 'Workflow automation & reporting'] },
+  { icon: 'chart', ...serviceNav[2], points: ['Commercial strategy & roadmap', 'Paid media & CRO management', 'Analytics, SEO & reporting'] },
+  { icon: 'globe', ...serviceNav[3], points: ['Your seller accounts on Amazon, eBay & more', 'Listing, pricing & stock sync', 'Cross-border expansion in the EU'] },
+];
+
+const steps = [
+  { n: '01', t: 'Discovery & audit', d: 'We review your store, stack, operations and numbers. You receive a written assessment with priorities — before any contract is signed.' },
+  { n: '02', t: 'Proposal & scope', d: 'A fixed-scope proposal: deliverables, timeline, team, monthly fee and exit terms. No hidden costs, no lock-in.' },
+  { n: '03', t: 'Onboarding', d: 'Access, documentation and processes are set up in the first two weeks. You keep ownership of every account and platform.' },
+  { n: '04', t: 'Run, measure, improve', d: 'A named manager runs the day-to-day; a monthly review tracks KPIs against the plan and adjusts scope with you.' },
+];
+
+const faq = [
+  { q: 'What exactly does USN sell?', a: 'Business-to-business services: the outsourced management of online stores and marketplace sales channels, the development and integration of e-commerce technology, and growth consulting. We do not sell physical or digital goods to consumers on this website.' },
+  { q: 'How are services priced and paid?', a: 'Through monthly retainers or fixed-price projects, agreed in a written proposal and invoiced by <strong>USN Ltd.</strong> (Malta). Payment is by bank transfer or card against invoice. See the <a href="/pricing">pricing page</a> for indicative ranges.' },
+  { q: 'Where is USN based and who runs it?', a: `USN Ltd. is a private limited company registered in Malta (company number ${company.registrationNumber}) with its registered office in Ta' Xbiex. It is led by its founder, <a href="/founder">${company.founder.name}</a>.` },
+  { q: 'Which markets and languages do you cover?', a: 'We work with brands selling across the European Union and internationally. Our working languages are English and Italian; customer-care coverage in additional languages is scoped per project.' },
+];
+---
+<Base title="USN — E-commerce operations, technology and growth, managed end to end" description="USN Ltd. (Malta) manages online stores and marketplace sales channels for brands: daily operations, technology & integrations, growth and omnichannel expansion. One accountable partner, transparent pricing.">
+  <!-- HERO -->
+  <section class="relative overflow-hidden bg-ink-950 text-white">
+    <div class="absolute inset-0 grid-bg"></div>
+    <div class="absolute inset-0 glow"></div>
+    <div class="container-x relative grid items-center gap-14 pb-20 pt-16 sm:pt-24 lg:grid-cols-12 lg:pb-28 lg:pt-28">
+      <div class="lg:col-span-7">
+        <p class="eyebrow eyebrow-light animate-fade-up">E-commerce management · Malta, EU</p>
+        <h1 class="h-display mt-6 !text-white animate-fade-up [animation-delay:.1s]">
+          The ultimate <span class="text-sea-400">e-commerce</span> management partner.
+        </h1>
+        <p class="lead mt-7 max-w-xl !text-mist-300 animate-fade-up [animation-delay:.2s]">
+          USN runs the operations, the technology and the growth of your online business — as one accountable team, with transparent monthly pricing and no lock-in.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-3 animate-fade-up [animation-delay:.3s]">
+          <a href="/contact" class="btn-accent">Book a discovery call <Icon name="arrow" class="h-4 w-4" /></a>
+          <a href="/services" class="btn-ghost-light">Explore services</a>
+        </div>
+        <dl class="mt-14 grid max-w-xl grid-cols-2 gap-6 border-t border-white/10 pt-8 text-sm sm:grid-cols-4 animate-fade-up [animation-delay:.4s]">
+          <div><dt class="text-mist-400">Registered in</dt><dd class="mt-1 font-semibold">Malta (EU)</dd></div>
+          <div><dt class="text-mist-400">Company no.</dt><dd class="mt-1 font-semibold">{company.registrationNumber}</dd></div>
+          <div><dt class="text-mist-400">Working languages</dt><dd class="mt-1 font-semibold">EN · IT</dd></div>
+          <div><dt class="text-mist-400">Pricing</dt><dd class="mt-1 font-semibold">Monthly, transparent</dd></div>
+        </dl>
+      </div>
+
+      <!-- Hero visual: operations "control room" card stack -->
+      <div class="relative lg:col-span-5 animate-fade-up [animation-delay:.25s]" aria-hidden="true">
+        <div class="relative mx-auto max-w-md">
+          <div class="card-dark !p-6">
+            <div class="flex items-center justify-between text-xs text-mist-400"><span>Store health · weekly review</span><span class="inline-flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-sea-400"></span>live</span></div>
+            <div class="mt-5 grid grid-cols-3 gap-3 text-center">
+              {[['Orders','on plan'],['Stock sync','4 channels'],['Care SLA','< 4h']].map(([k,v]) => <div class="rounded-xl bg-white/5 p-3"><div class="text-[11px] text-mist-400">{k}</div><div class="mt-1 text-sm font-semibold">{v}</div></div>)}
+            </div>
+            <div class="mt-5 space-y-2.5">
+              {[['Catalogue · 1,240 SKUs enriched', 'w-[82%]'],['Paid media · ROAS tracking', 'w-[64%]'],['Channel listings · DE / FR / ES', 'w-[47%]']].map(([l,w]) => <div><div class="flex justify-between text-[11px] text-mist-400"><span>{l}</span></div><div class="mt-1.5 h-1.5 rounded-full bg-white/10"><div class:list={['h-1.5 rounded-full bg-gradient-to-r from-sea-600 to-sea-300', w]}></div></div></div>)}
+            </div>
+          </div>
+          <div class="card-dark absolute -bottom-8 -left-6 hidden w-56 !p-4 shadow-lift sm:-left-12 sm:block">
+            <div class="text-[11px] text-mist-400">Integration</div>
+            <div class="mt-1 flex items-center gap-2 text-sm font-semibold"><Icon name="repeat" class="h-4 w-4 text-sea-400" /> ERP ⇄ Store ⇄ Channels</div>
+          </div>
+          <div class="card-dark absolute -right-4 -top-6 hidden w-44 !p-4 shadow-lift sm:-right-10 sm:block">
+            <div class="text-[11px] text-mist-400">Named manager</div>
+            <div class="mt-1 text-sm font-semibold">Monthly KPI review</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE DO -->
+  <section class="section" id="what-we-do">
+    <div class="container-x">
+      <div class="grid gap-10 lg:grid-cols-12 lg:items-end">
+        <div class="lg:col-span-7" data-reveal>
+          <p class="eyebrow">360° e-commerce</p>
+          <h2 class="h-section mt-5">Everything a growing online business needs to run — under one roof, one contract, one point of contact.</h2>
+        </div>
+        <p class="lead lg:col-span-5" data-reveal="2">Most brands juggle an agency, a developer, a channel specialist and an in-house team that never quite talk to each other. USN replaces that patchwork with a single, accountable operating partner.</p>
+      </div>
+
+      <div class="mt-16 grid gap-6 md:grid-cols-2">
+        {services.map((s, i) => (
+          <a href={s.href} class="card group flex flex-col" data-reveal={String(Math.min(i + 1, 4))}>
+            <div class="flex items-start justify-between">
+              <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-ink-900 text-sea-400"><Icon name={s.icon} class="h-6 w-6" /></span>
+              <Icon name="arrow" class="h-5 w-5 text-ink-500 transition-transform group-hover:translate-x-1 group-hover:text-ink-900" />
+            </div>
+            <h3 class="h-card mt-6">{s.label}</h3>
+            <p class="mt-2 text-ink-600">{s.blurb}</p>
+            <ul class="mt-6 space-y-2 border-t border-ink-900/8 pt-5 text-sm text-ink-700">
+              {s.points.map((p) => <li class="flex gap-2.5"><Icon name="check" class="mt-0.5 h-4 w-4 shrink-0 text-sea-600" />{p}</li>)}
+            </ul>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY USN -->
+  <section class="section bg-white">
+    <div class="container-x grid gap-14 lg:grid-cols-12">
+      <div class="lg:col-span-5" data-reveal>
+        <p class="eyebrow">Why USN</p>
+        <h2 class="h-section mt-5">Outsourcing done the right way: as the first step towards your own capability, not a dependency.</h2>
+        <p class="lead mt-6">We believe outsourcing isn’t a final destination. We document everything, keep you as the owner of every platform and account, and train your people as we go — so insourcing is always an option, never a renegotiation.</p>
+        <a href="/how-we-work" class="link-underline mt-8 inline-flex items-center gap-2">How an engagement works <Icon name="arrow" class="h-4 w-4" /></a>
+      </div>
+      <div class="grid gap-5 sm:grid-cols-2 lg:col-span-7">
+        {[
+          ['shield', 'One accountable partner', 'A named engagement manager, a written scope and a monthly review. If something breaks, you know who to call.'],
+          ['doc', 'Transparent, written pricing', 'Retainers and project fees are agreed up front and published as indicative ranges. No surprise invoices.'],
+          ['lock', 'You own everything', 'Stores, ad accounts, seller accounts and code stay in your name from day one.'],
+          ['compass', 'EU-based, EU-compliant', 'A Malta-registered company working under EU consumer, data-protection and VAT rules — useful when you sell across borders.'],
+        ].map(([icon, t, d], i) => (
+          <div class="rounded-2xl border border-ink-900/8 bg-sand-50 p-7" data-reveal={String(Math.min(i + 1, 4))}>
+            <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-white text-sea-700 shadow-soft"><Icon name={icon} class="h-5 w-5" /></span>
+            <h3 class="h-card mt-5 !text-lg">{t}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-ink-600">{d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section">
+    <div class="container-x">
+      <div class="max-w-2xl" data-reveal>
+        <p class="eyebrow">How we work</p>
+        <h2 class="h-section mt-5">From first call to a running operation in four clear steps.</h2>
+      </div>
+      <ol class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {steps.map((s, i) => (
+          <li class="relative rounded-2xl border border-ink-900/8 bg-white p-7" data-reveal={String(i + 1)}>
+            <span class="font-display text-4xl font-bold text-sea-500/70">{s.n}</span>
+            <h3 class="h-card mt-4 !text-lg">{s.t}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-ink-600">{s.d}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- FOUNDER TEASER -->
+  <section class="section bg-ink-950 text-white">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-5" data-reveal>
+        <div class="relative mx-auto aspect-[4/5] max-w-sm overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-ink-800 to-ink-950">
+          <div class="absolute inset-0 glow"></div>
+          {hasPhoto ? <img src="/founder.jpg" alt={`${company.founder.name}, ${company.founder.role} of USN`} class="relative h-full w-full object-cover" loading="lazy" width="640" height="800" /> : <div class="relative flex h-full w-full items-center justify-center"><span class="font-display text-[7rem] font-bold text-white/15">{company.founder.name.split(' ').map(w => w[0]).join('')}</span></div>}
+          <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink-950 via-ink-950/60 to-transparent p-7">
+            <div class="font-display text-xl font-semibold">{company.founder.name}</div>
+            <div class="text-sm text-mist-400">{company.founder.role}</div>
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-7" data-reveal="2">
+        <p class="eyebrow eyebrow-light">Founder-led</p>
+        <h2 class="h-section mt-5 !text-white">Built by an operator who has spent more than a decade inside digital commerce.</h2>
+        <p class="mt-6 text-lg leading-relaxed text-mist-300">USN is founder-led and deliberately small. Every engagement is scoped and reviewed personally by {company.founder.name}, who has built and run online businesses across Europe before founding USN in Malta.</p>
+        <blockquote class="mt-8 border-l-2 border-sea-500 pl-6 font-display text-xl italic text-white/90">“{company.motto}”</blockquote>
+        <a href="/founder" class="btn-ghost-light mt-10">Meet the founder <Icon name="arrow" class="h-4 w-4" /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-4" data-reveal>
+        <p class="eyebrow">Good to know</p>
+        <h2 class="h-section mt-5">Straight answers to the questions we get asked first.</h2>
+        <a href="/faq" class="link-underline mt-8 inline-flex items-center gap-2">Read the full FAQ <Icon name="arrow" class="h-4 w-4" /></a>
+      </div>
+      <div class="lg:col-span-8" data-reveal="2"><Faq items={faq} /></div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>

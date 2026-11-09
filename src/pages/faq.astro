@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Faq from '../components/Faq.astro';
+import { company, fullAddress } from '../data/company';
+const groups = [
+  { title: 'About USN', items: [
+    { q: 'What does USN do?', a: 'USN Ltd. provides business-to-business e-commerce management services: the day-to-day operation of online stores and sales channels, the development and integration of e-commerce technology, growth and performance marketing management, and multichannel sales management. See <a href="/services">Services</a>.' },
+    { q: 'What does USN not do?', a: 'We do not sell goods to consumers, we do not hold or resell our clients’ stock, we do not operate a marketplace, we do not process payments and we never hold client funds. We provide services and invoice for them.' },
+    { q: 'Who is behind USN?', a: `USN Ltd. is a private limited company registered in Malta (company number ${company.registrationNumber}, ${company.registry}), founded and led by <a href="/founder">${company.founder.name}</a>, its managing director and sole shareholder.` },
+    { q: 'Where are you located?', a: `Our registered office is at ${fullAddress}. We serve clients across the European Union and internationally, working remotely and on site when needed.` },
+    { q: 'Which languages do you work in?', a: 'English and Italian. Customer-care coverage in additional languages (German, French, Spanish, Dutch) is scoped per engagement.' },
+  ]},
+  { title: 'Engagements & pricing', items: [
+    { q: 'How do I start working with USN?', a: 'Book a free discovery call via the <a href="/contact">contact page</a>. After the call we propose an audit or go straight to a written proposal with a fixed price. Work starts once the service agreement is signed and the first invoice is paid. Details on <a href="/how-we-work">How we work</a>.' },
+    { q: 'How much does it cost?', a: 'Audits start at €3,500 one-off; managed operations from €2,500 per month; full-service partnerships from €7,500 per month. Indicative ranges per service line are on the <a href="/pricing">pricing page</a>; the exact figure is fixed in your proposal.' },
+    { q: 'Is there a minimum term?', a: 'Retainers have a three-month minimum, then roll monthly with 30 days’ written notice. Projects are fixed-scope with milestone payments.' },
+    { q: 'How and when do I pay?', a: `Invoices are issued by ${company.legalName} in EUR and are payable within 14 days by SEPA bank transfer or card. Retainers are billed monthly in advance; projects 40% on signature and the balance on milestones. Prices are exclusive of VAT.` },
+    { q: 'Can I cancel and get a refund?', a: 'Yes. Unused prepaid retainer periods are refunded pro rata after the minimum term and notice period; project deposits are refundable in full before work begins. See the <a href="/legal/refunds">Refund, Cancellation & Delivery Policy</a>.' },
+  ]},
+  { title: 'Operations & security', items: [
+    { q: 'Will you need access to my systems?', a: 'Yes, to the extent required by the scope: store back office, seller or ad accounts, analytics and ticketing. Access is granted to named USN staff accounts, under your ownership, and revoked at the end of the engagement.' },
+    { q: 'Who owns the accounts, data and code?', a: 'You do, always. Accounts are created in your company’s name; code is delivered to your repositories; data stays in your systems. This is written into every service agreement.' },
+    { q: 'How do you handle personal data of my customers?', a: 'As a data processor under the GDPR, on your documented instructions and under a data processing agreement. Our <a href="/legal/privacy">Privacy Policy</a> explains how we handle personal data as a controller for our own business.' },
+    { q: 'Do you offer service levels?', a: 'Yes. Response times, business-hours coverage (Monday to Friday, 09:00–18:00 CET) and escalation paths are specified in the agreement.' },
+  ]},
+];
+const schema = [{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: groups.flatMap(g => g.items).map(i => ({ '@type': 'Question', name: i.q, acceptedAnswer: { '@type': 'Answer', text: i.a.replace(/<[^>]+>/g, '') } })) }];
+---
+<Base title="FAQ — Frequently asked questions about USN" description="Answers about what USN does, who runs it, how engagements and pricing work, payment terms, refunds, security and data protection." schema={schema}>
+  <PageHero eyebrow="FAQ" title="Frequently asked questions." lead="If your question is not here, write to us — a real person replies within one business day." crumbs={[{ label: 'FAQ' }]} />
+  <section class="section">
+    <div class="container-x grid gap-16">
+      {groups.map((g) => <div class="grid gap-8 lg:grid-cols-12"><div class="lg:col-span-4"><h2 class="h-section !text-2xl">{g.title}</h2></div><div class="lg:col-span-8"><Faq items={g.items} /></div></div>)}
+    </div>
+  </section>
+  <CtaBand />
+</Base>
